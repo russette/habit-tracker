@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Russette's Habit Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <header>
+            <p class="welcome">MY HABIT TRACKER 🔥</p>
+
+            <h1>Build Better Habits</h1>
+
+            <p>
+                Stay consistent, track your progress and become better
+                every day.
+            </p>
+        </header>
+
+        <!-- Add Habit -->
+        <div class="add-habit">
+            <input
+                type="text"
+                id="habitInput"
+                placeholder="Enter a new habit..."
+                autocomplete="off"
+            >
+
+            <button id="addHabitButton">
+                Add Habit
+            </button>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats">
+
+            <div class="stat-card">
+                <span>🔥</span>
+                <strong id="streakCount">0</strong>
+                <small>Current Streak</small>
+            </div>
+
+            <div class="stat-card">
+                <span>✅</span>
+                <strong id="completedCount">0</strong>
+                <small>Completed Today</small>
+            </div>
+
+            <div class="stat-card">
+                <span>📊</span>
+                <strong id="progressPercent">0%</strong>
+                <small>Today's Progress</small>
+            </div>
+
+        </div>
+
+        <!-- Habits -->
+        <section class="habits-section">
+
+            <div class="section-heading">
+                <h2>Today's Habits</h2>
+
+                <button id="resetButton">
+                    Reset Today
+                </button>
+            </div>
+
+            <div id="habitList"></div>
+
+            <div id="emptyMessage" class="empty-message">
+                <div>🎯</div>
+
+                <h2>No habits yet</h2>
+
+                <p>
+                    Add your first habit above and start building your
+                    routine.
+                </p>
+            </div>
+
+        </section>
+
+    </div>
+
+    <footer>
+        <p>Built by Russette with HTML, CSS & JavaScript.</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
