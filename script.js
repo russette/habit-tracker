@@ -26,7 +26,7 @@ function updateStats() {
     const total = habits.length;
 
     const completed = habits.filter(function(habit) {
-        return habit.completedToday;
+        return habit.completedToday === true;
     }).length;
 
     completedCount.textContent = completed;
@@ -38,27 +38,17 @@ function updateStats() {
         progressPercent.textContent = progress + "%";
     }
 
-    let streak = 0;
+    if (completed === total && total > 0) {
+        const bestStreak = Math.max(
+            ...habits.map(function(habit) {
+                return habit.streak || 0;
+            })
+        );
 
-    if (total > 0) {
-        const allCompleted = habits.every(function(habit) {
-            return habit.completedToday;
-        });
-
-        if (allCompleted) {
-            streak = Math.max(
-                ...habits.map(function(habit) {
-                    return habit.streak || 0;
-                })
-            );
-
-            if (streak === 0) {
-                streak = 1;
-            }
-        }
+        streakCount.textContent = bestStreak;
+    } else {
+        streakCount.textContent = "0";
     }
-
-    streakCount.textContent = streak;
 }
 
 function renderHabits() {
@@ -80,6 +70,7 @@ function renderHabits() {
         }
 
         const checkbox = document.createElement("input");
+
         checkbox.type = "checkbox";
         checkbox.className = "habit-check";
         checkbox.checked = habit.completedToday;
@@ -89,6 +80,7 @@ function renderHabits() {
             const today = getToday();
 
             if (checkbox.checked) {
+
                 habit.completedToday = true;
 
                 if (habit.lastCompleted !== today) {
@@ -97,19 +89,22 @@ function renderHabits() {
                 }
 
             } else {
+
                 habit.completedToday = false;
+
             }
 
             saveHabits();
             renderHabits();
-            updateStats();
         });
 
         const name = document.createElement("span");
+
         name.className = "habit-name";
         name.textContent = habit.name;
 
         const deleteButton = document.createElement("button");
+
         deleteButton.className = "delete-habit";
         deleteButton.textContent = "🗑️";
 
@@ -121,7 +116,6 @@ function renderHabits() {
 
             saveHabits();
             renderHabits();
-            updateStats();
         });
 
         habitElement.appendChild(checkbox);
@@ -166,6 +160,7 @@ habitInput.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
         addHabit();
     }
+
 });
 
 resetButton.addEventListener("click", function() {
